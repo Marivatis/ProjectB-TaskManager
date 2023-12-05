@@ -8,22 +8,27 @@ namespace ProjectB_TaskManager.Classes.General
 {
     public class StringFormatter
     {
-        public string FormatToLength(string str, int maxLength)
+        public string FormatToLength(string str, int length)
+        {
+            
+        }
+
+        private string FormatToBiggerLength(string str, int length)
         {
             StringBuilder formatedString = new StringBuilder();
 
             string strPart;
 
             for (int i = 0; i < str.Length; i++)
-            {                
-                if (i + maxLength > str.Length)
+            {
+                if (i + length > str.Length)
                 {
                     strPart = str.Substring(i, i + str.Length - 1);
                     formatedString.Append(strPart);
                 }
                 else
                 {
-                    strPart = str.Substring(i, i + maxLength - 1);
+                    strPart = str.Substring(i, i + length - 1);
                     formatedString.Append(strPart + '-' + '\n');
                 }
             }
