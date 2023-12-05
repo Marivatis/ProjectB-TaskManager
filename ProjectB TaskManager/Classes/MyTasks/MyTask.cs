@@ -9,9 +9,40 @@ namespace ProjectB_TaskManager.Classes.MyTasks
         protected DateTime deadline;
         protected MyTaskStatus status;
 
-        public abstract string Description { get; set; }
-        public abstract MyTaskStatus Status { get; set; }
-        public abstract DateTime Deadline { get; set;  }
+        public abstract string Description { get; set; }      
+        
+        public virtual DateTime Deadline 
+        {
+            get
+            {
+                return deadline;
+            }
+            set
+            {
+                if (value < DateTime.UtcNow)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value), "Deadline cannot be less than the current date.");
+                }
+
+                deadline = value;
+            }
+        }
+        public virtual MyTaskStatus Status 
+        {
+            get
+            {
+                return status;
+            }
+            set
+            {
+                if (!Enum.IsDefined(typeof(MyTaskStatus), value))
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value), "Value does not match enum MyTaskStatus.");
+                }
+
+                status = value;
+            }
+        }
 
         public TimeSpan RemainingTime => Deadline - DateTime.UtcNow;
 
