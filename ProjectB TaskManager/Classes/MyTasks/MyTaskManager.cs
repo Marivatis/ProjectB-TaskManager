@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 
 namespace ProjectB_TaskManager.Classes.MyTasks
 {
@@ -15,9 +16,18 @@ namespace ProjectB_TaskManager.Classes.MyTasks
             tasks = new List<MyTask>();
         }
 
+        /// <summary>
+        /// Gets the number of elements contained in the task manager list.
+        /// </summary>
         public int Count => tasks.Count;
 
+        /// <summary>
+        /// Gets an object that can be used to synchronize access to the task manager list.
+        /// </summary>
         public object SyncRoot => ((ICollection)tasks).SyncRoot;
+        /// <summary>
+        /// Gets a value indicating whether access to the task manager list is synchronized.
+        /// </summary>
         public bool IsSynchronized => ((ICollection)tasks).IsSynchronized;
 
         public MyTask this[int index]
@@ -69,32 +79,61 @@ namespace ProjectB_TaskManager.Classes.MyTasks
         {
             return tasks.Remove(item);
         }
+        /// <summary>
+        /// Copies all tasks to List<MyTask> list and returns it.
+        /// </summary>
         public List<MyTask> ToList()
         {
-            throw new NotImplementedException();
+            return new List<MyTask>(tasks);
         }
-        public void SortTasksByReamingDate()
+        /// <summary>
+        /// Sorts tasks in task manager list in order by remaining date
+        /// </summary>
+        public void SortTasksByRemainingDate()
         {
-            throw new NotImplementedException();
+            tasks = tasks.OrderBy(t => t.RemainingTime).ToList();
         }
-
+        /// <summary>
+        /// Copies all tasks to MyTask[] array.
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="index"></param>
         public void CopyTo(Array array, int index)
         {
-            throw new NotImplementedException();
+            tasks.CopyTo((MyTask[])array, index);
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
+        /// <summary>
+        /// Returns an enumerator that iterates through the collection.
+        /// </summary>
         public IEnumerator<MyTask> GetEnumerator()
         {
-            throw new NotImplementedException();
+            return ((IEnumerable<MyTask>)tasks).GetEnumerator();
+        }
+        /// <summary>
+        /// Returns an enumerator that iterates through a collection.
+        /// </summary>
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable)tasks).GetEnumerator();
         }
 
+        /// <summary>
+        /// Сhecks whether such a task with same hash code exists in task manager list.
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns>
+        /// Returns <see langword="true"/> if this task exists, otherwise <see langword="false"/>.
+        /// </returns>
         public bool IsDuplicate(MyTask item)
         {
-            throw new NotImplementedException();
+            foreach (MyTask file in tasks)
+            {
+                if (item.GetHashCode() == file.GetHashCode())
+                    return true;
+            }
+
+            return false;
         }
     }
 }
