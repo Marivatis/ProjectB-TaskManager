@@ -20,5 +20,13 @@ namespace ProjectB_TaskManager.Classes.Consoles
             Console.WriteLine("[8] - Show main menu");
             Console.WriteLine("[0] - Exit");
         }
+
+        public static void PrintAddMenu()
+        {
+            Console.WriteLine("[1] - Add university task");
+            Console.WriteLine("[2] - Add university task randomly");
+            Console.WriteLine("[3] - ");
+            Console.WriteLine("[4] - ");
+        }
     }
 }
