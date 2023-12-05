@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectB_TaskManager.Enums;
+using System;
 using System.Globalization;
 
 namespace ProjectB_TaskManager.Classes.Consoles
@@ -74,6 +75,24 @@ namespace ProjectB_TaskManager.Classes.Consoles
             }
 
             return date;
+        }
+
+        public static MyTaskStatus ReadMyTaskStatus(string inputMessage)
+        {
+            MyTaskStatus status = MyTaskStatus.NotStarted;
+
+            try
+            {
+                Console.Write(inputMessage);
+
+                status = ReadMyTaskStatus();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return status;
         }
     }
 }

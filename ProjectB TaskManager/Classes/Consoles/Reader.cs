@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectB_TaskManager.Enums;
+using System;
 using System.Globalization;
 
 namespace ProjectB_TaskManager.Classes.Consoles
@@ -22,12 +23,18 @@ namespace ProjectB_TaskManager.Classes.Consoles
 
         public static DateTime ReadDateTime(string format)
         {
-            DateTime date;
-
             string input = Console.ReadLine();
-            date = DateTime.ParseExact(input, format, CultureInfo.InvariantCulture);
+            DateTime date = DateTime.ParseExact(input, format, CultureInfo.InvariantCulture);
 
             return date;
+        }
+
+        public static MyTaskStatus ReadMyTaskStatus()
+        {
+            string input = Console.ReadLine();
+            MyTaskStatus status = (MyTaskStatus) Enum.Parse(typeof(MyTaskStatus), input);
+
+            return status;
         }
     }
 }
