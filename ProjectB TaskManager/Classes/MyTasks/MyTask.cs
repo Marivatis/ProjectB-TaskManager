@@ -5,12 +5,10 @@ namespace ProjectB_TaskManager.Classes.General
 {
     public abstract class MyTask : ITablePrintable
     {
-        private int id;
         private string description;
         private DateTime deadline;
         private MyTaskStatus status;
 
-        public int Id => id;
         public string Description { get; set; }
         public abstract MyTaskStatus Status { get; set; }
         public abstract DateTime Deadline { get; set;  }
@@ -26,14 +24,7 @@ namespace ProjectB_TaskManager.Classes.General
             Status = MyTaskStatus.Completed;
         }
 
-        public override int GetHashCode()
-        {
-            int hash = 3;
-
-            hash += Id.GetHashCode();
-
-            return hash;
-        }
+        public abstract override int GetHashCode();
 
         public abstract string GetTableHeader();
         public abstract string GetTableRow();
