@@ -47,9 +47,12 @@ namespace ProjectB_TaskManager.Classes.Consoles
                     break;
                 case 2: // Print tasks
                     List<ITablePrintable> list = ToTablePrintableList(taskManager.ToList(), typeof(MyUniversityTask));
-
                     TablePrinter tablePrinter = new TablePrinter(list);
+                    tablePrinter.PrintTable();
 
+                    Console.WriteLine();
+                    list = ToTablePrintableList(taskManager.ToList(), typeof(MyGeneralTask));
+                    tablePrinter = new TablePrinter(list);
                     tablePrinter.PrintTable();
                     break;
                 case 3: // Find tasks
@@ -78,9 +81,11 @@ namespace ProjectB_TaskManager.Classes.Consoles
                 case 2: // Add university task randomly
                     AddUniversityTasksRandomly();
                     break;
-                case 3:
+                case 3: // Add general task
+                    AddGeneralTask();
                     break;
-                case 4:
+                case 4: // Add general task randomly
+                    AddGeneralTasksRandomly();
                     break;
             }
         }
@@ -115,6 +120,44 @@ namespace ProjectB_TaskManager.Classes.Consoles
                 MyUniversityTask task = new MyUniversityTask();
 
                 task.CourseName = randomProperties.GetCourseName();
+                task.Description = randomProperties.GetDescription();
+                task.Deadline = randomProperties.GetDeadline();
+                task.Status = randomProperties.GetTaskStatus();
+
+                taskManager.Add(task);
+            }
+        }
+
+        private void AddGeneralTask()
+        {
+            try
+            {
+                MyGeneralTask task = new MyGeneralTask();
+
+                task.Title = MyConsoleReader.ReadString("Enter title --> ");
+                task.Description = MyConsoleReader.ReadString("Enter task description --> ");
+                task.Deadline = MyConsoleReader.ReadDateTime("Enter task deadline --> ", "dd.MM.yyyy");
+                task.Status = MyConsoleReader.ReadMyTaskStatus("Enter task status --> ");
+
+                taskManager.Add(task);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                AddGeneralTask();
+            }
+        }
+        private void AddGeneralTasksRandomly() 
+        {
+            int count = MyConsoleReader.ReadInt32("Enter how many tasks you want to add --> ");
+
+            MyTaskRandomProperties randomProperties = new MyTaskRandomProperties();
+
+            while (count-- > 0)
+            {
+                MyGeneralTask task = new MyGeneralTask();
+
+                task.Title = randomProperties.GetTitle();
                 task.Description = randomProperties.GetDescription();
                 task.Deadline = randomProperties.GetDeadline();
                 task.Status = randomProperties.GetTaskStatus();

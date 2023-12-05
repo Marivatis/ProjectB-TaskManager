@@ -16,6 +16,11 @@ namespace ProjectB_TaskManager.Classes.MyTasks
             random = new Random();
         }
 
+        public string GetTitle()
+        {
+            return $"Some Title {random.Next(10, 100)}";
+        }
+
         public string GetCourseName()
         {
             return $"Course {random.Next(1, 8)}";
