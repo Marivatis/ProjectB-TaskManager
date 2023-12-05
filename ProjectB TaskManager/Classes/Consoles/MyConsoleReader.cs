@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace ProjectB_TaskManager.Classes.Consoles
 {
@@ -48,6 +49,31 @@ namespace ProjectB_TaskManager.Classes.Consoles
             }
 
             return number;
+        }
+
+        public static string ReadString(string inputMessage)
+        {
+            Console.Write(inputMessage);
+            return Console.ReadLine();
+        }
+
+        public static DateTime ReadDateTime(string inputMessage, string format)
+        {
+            DateTime date = DateTime.MinValue;
+
+            try
+            {
+                Console.Write(inputMessage);
+
+                date = ReadDateTime(format);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                ReadDateTime(inputMessage, format);
+            }
+
+            return date;
         }
     }
 }

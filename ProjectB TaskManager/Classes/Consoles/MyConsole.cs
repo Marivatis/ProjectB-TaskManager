@@ -9,6 +9,13 @@ namespace ProjectB_TaskManager.Classes.Consoles
 {
     public class MyConsole
     {
+        private MyTaskManager taskManager;
+
+        public MyConsole() 
+        {
+            taskManager = new MyTaskManager();
+        }
+
         public void Run()
         {
             Printer.PrintMainMenu();
@@ -72,6 +79,12 @@ namespace ProjectB_TaskManager.Classes.Consoles
             {
                 MyUniversityTask task = new MyUniversityTask();
 
+                task.CourseName = MyConsoleReader.ReadString("Enter course name --> ");
+                task.Description = MyConsoleReader.ReadString("Enter task description --> ");
+                task.Deadline = MyConsoleReader.ReadDateTime("Enter task deadline --> ", "dd.MM.yyyy");
+                task.Status = MyConsoleReader.ReadMyTaskStatus("Enter task status --> ");
+
+                taskManager.Add(task);
             }
             catch (Exception ex)
             {

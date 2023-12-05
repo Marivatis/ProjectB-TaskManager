@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Globalization;
 
 namespace ProjectB_TaskManager.Classes.Consoles
 {
-    internal class Reader
+    public class Reader
     {
         public static int ReadInt32()
         {
@@ -17,6 +18,16 @@ namespace ProjectB_TaskManager.Classes.Consoles
                 throw new OverflowException("Please, input number from the specified range!");
 
             return number;
+        }
+
+        public static DateTime ReadDateTime(string format)
+        {
+            DateTime date;
+
+            string input = Console.ReadLine();
+            date = DateTime.ParseExact(input, format, CultureInfo.InvariantCulture);
+
+            return date;
         }
     }
 }
