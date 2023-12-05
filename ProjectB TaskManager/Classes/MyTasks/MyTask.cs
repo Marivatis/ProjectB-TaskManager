@@ -9,6 +9,13 @@ namespace ProjectB_TaskManager.Classes.MyTasks
         protected DateTime deadline;
         protected MyTaskStatus status;
 
+        protected MyTask(string description, DateTime deadline, MyTaskStatus status) 
+        {
+            this.description = description;
+            this.deadline = deadline;
+            this.status = status;
+        }
+
         public abstract string Description { get; set; }      
         
         public virtual DateTime Deadline 
