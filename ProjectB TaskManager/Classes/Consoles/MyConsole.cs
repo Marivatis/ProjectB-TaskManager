@@ -32,14 +32,25 @@ namespace ProjectB_TaskManager.Classes.Consoles
             Console.WriteLine("Have a nice day!");
         }
 
-        private void MainMenuSwitch(int option)
+        private void MainMenuSwitch(int mainMenuOption)
         {
-            switch (option)
+            int option;
+
+            switch (mainMenuOption)
             {
                 case 1: // Add task
+                    Printer.PrintAddMenu();
 
+                    option = MyConsoleReader.ReadInt32("Enter any adding option --> ", 1, 4);
+
+                    AddTaskSwitch(option);
                     break;
                 case 2: // Print tasks
+                    List<ITablePrintable> list = ToTablePrintableList(taskManager.ToList(), typeof(MyUniversityTask));
+
+                    TablePrinter tablePrinter = new TablePrinter(list);
+
+                    tablePrinter.PrintTable();
                     break;
                 case 3: // Find tasks
                     break;
@@ -65,6 +76,7 @@ namespace ProjectB_TaskManager.Classes.Consoles
                     AddUniversityTask();
                     break;
                 case 2: // Add university task randomly
+                    AddUniversityTasksRandomly();
                     break;
                 case 3:
                     break;
@@ -91,6 +103,39 @@ namespace ProjectB_TaskManager.Classes.Consoles
                 Console.WriteLine(ex.Message);
                 AddUniversityTask();
             }
+        }
+        private void AddUniversityTasksRandomly()
+        {
+            int count = MyConsoleReader.ReadInt32("Enter how many tasks you want to add --> ");
+
+            MyTaskRandomProperties randomProperties = new MyTaskRandomProperties();
+
+            while (count --> 0)
+            {
+                MyUniversityTask task = new MyUniversityTask();
+
+                task.CourseName = randomProperties.GetCourseName();
+                task.Description = randomProperties.GetDescription();
+                task.Deadline = randomProperties.GetDeadline();
+                task.Status = randomProperties.GetTaskStatus();
+
+                taskManager.Add(task);
+            }
+        }
+
+        private List<ITablePrintable> ToTablePrintableList(List<MyTask> tasks, Type type)
+        {
+            List<ITablePrintable> tablePrintables = new List<ITablePrintable>();
+
+            foreach (MyTask task in tasks)
+            {
+                if (type.IsAssignableFrom(task.GetType()))
+                {
+                    tablePrintables.Add(task);
+                }
+            }
+
+            return tablePrintables;
         }
     }
 }

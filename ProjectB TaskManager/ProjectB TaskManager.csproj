@@ -54,6 +54,7 @@
     <Compile Include="Classes\General\StringFormatter.cs" />
     <Compile Include="Classes\MyTasks\MyTask.cs" />
     <Compile Include="Classes\MyTasks\MyTaskManager.cs" />
+    <Compile Include="Classes\MyTasks\MyTaskRandomProperties.cs" />
     <Compile Include="Classes\MyTasks\MyUniversityTask.cs" />
     <Compile Include="Enums\MyTaskStatus.cs" />
     <Compile Include="Interfaces\IDuplicateCheckable.cs" />
