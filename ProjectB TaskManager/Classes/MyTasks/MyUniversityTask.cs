@@ -13,7 +13,7 @@ namespace ProjectB_TaskManager.Classes.MyTasks
         private string courseName;
 
         public MyUniversityTask()
-            : this("No Course", "No Description", DateTime.MaxValue, MyTaskStatus.NotStarted) { }
+            : this("No Course", "No Description", DateTime.MinValue, MyTaskStatus.NotStarted) { }
 
         public MyUniversityTask(string courseName, string description, DateTime deadline, MyTaskStatus status)
             : base(description, deadline, status)
@@ -81,36 +81,34 @@ namespace ProjectB_TaskManager.Classes.MyTasks
 
         public override string GetTableFooter()
         {
-            throw new NotImplementedException();
-        }
+            // Course Name Length --> 11
+            // Task Description Length --> 21
+            // Task Status Length --> 11
+            // Deadline Length --> 10
+            // All Borders Length --> 13
 
+            return new String('-', 66);
+        }
         public override string GetTableHeader()
         {
-            throw new NotImplementedException();
-        }
+            StringBuilder tableHeader = new StringBuilder("| ");
+            StringFormatter formatter = new StringFormatter();
 
+            tableHeader.AppendLine(formatter.FormatToLength("Course Name", 11) + " | ");
+            tableHeader.AppendLine(formatter.FormatToLength("Task Description", 21) + " | ");
+            tableHeader.AppendLine(formatter.FormatToLength("Task Status", 11) + " | ");
+            tableHeader.AppendLine(formatter.FormatToLength("Deadline", 10) + " |");
+
+            return tableHeader.ToString();
+        }
         public override string GetTableRow()
         {
             StringBuilder tableRow = new StringBuilder("| ");
             StringFormatter formatter = new StringFormatter();
 
-            if (courseName.Length > 10)
-            {
-                 tableRow.AppendLine(formatter.FormatToLength(courseName, 10) + " | ");
-            }
-            else
-            {
-                tableRow.AppendLine(courseName + new String(' ', 10 - courseName.Length) + " | ");
-            }
-
-            if (description.Length > 20)
-            {
-                tableRow.AppendLine(formatter.FormatToLength(description, 20) + " | ");
-            }
-            else
-            {
-                tableRow.AppendLine(description + new String(' ', 10 - description.Length) + " | ");
-            }
+            tableRow.AppendLine(formatter.FormatToLength(courseName, 11) + " | ");
+            tableRow.AppendLine(formatter.FormatToLength(description, 21) + " | ");
+            tableRow.AppendLine(formatter.FormatToLength(status.ToString(), 11) + " | ");
 
             tableRow.AppendLine(deadline.ToString("dd.MM.yyyy") + " |");
 
