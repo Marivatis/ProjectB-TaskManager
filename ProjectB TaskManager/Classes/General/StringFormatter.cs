@@ -10,10 +10,21 @@ namespace ProjectB_TaskManager.Classes.General
     {
         public string FormatToLength(string str, int length)
         {
-            
+            if (str.Length > length)
+            {
+                return FormatToSmallerLength(str, length);
+            }
+            else if (str.Length < length)
+            {
+                return FormatToBiggerLength(str, length);
+            }
+            else
+            {
+                return str;
+            }
         }
 
-        private string FormatToBiggerLength(string str, int length)
+        private string FormatToSmallerLength(string str, int length)
         {
             StringBuilder formatedString = new StringBuilder();
 
@@ -34,6 +45,11 @@ namespace ProjectB_TaskManager.Classes.General
             }
 
             return formatedString.ToString();
+        }
+
+        private string FormatToBiggerLength(string str, int length)
+        {
+            return str + new String(' ', str.Length - length);
         }
     }
 }
