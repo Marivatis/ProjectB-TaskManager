@@ -53,16 +53,19 @@ namespace ProjectB_TaskManager.Classes.Consoles
                     taskManager.SortTasksByRemainingDate();
                     Console.WriteLine("Tasks has been successfully sorted!");
                     break;
-                case 4: // Delete task
+                case 4: // Mark task as completed
+                    MarkTaskAsCompleted();
+                    break;
+                case 5: // Delete task
                     RemoveTask();
                     break;
-                case 5: // Clear task manager
+                case 6: // Clear task manager
                     break;
-                case 6: // Save tasks to file
+                case 7: // Save tasks to file
                     break;
-                case 7: // Load tasks from file
+                case 8: // Load tasks from file
                     break;
-                case 8: // Print main menu
+                case 9: // Print main menu
                     Printer.PrintMainMenu();
                     break;
             }
@@ -204,6 +207,37 @@ namespace ProjectB_TaskManager.Classes.Consoles
                 {
                     taskManager.RemoveAt(i);
                     Console.WriteLine("Task has been successfully removed.");
+                    return;
+                }
+            }
+
+            Console.WriteLine("No task whith this id was found.");
+        }
+
+        private void MarkTaskAsCompleted()
+        {
+            string typeString = MyConsoleReader.ReadString("Enter task type [University/General] -->");
+
+            Type type = null;
+            if (typeString.Equals("University"))
+            {
+                PrintUniversityTasks();
+                type = typeof(MyUniversityTask);
+            }
+            else
+            {
+                PrintGeneralTasks();
+                type = typeof(MyGeneralTask);
+            }
+
+            int id = MyConsoleReader.ReadInt32("Enter task id you want to remove --> ", 1, 99);
+
+            for (int i = 0; i < taskManager.Count; i++)
+            {
+                if (taskManager[i].GetType() == type && taskManager[i].Id == id)
+                {
+                    taskManager[i].MarkAsCompleted();
+                    Console.WriteLine("Task has been successfully marked.");
                     return;
                 }
             }
