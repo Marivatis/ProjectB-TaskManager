@@ -1,4 +1,5 @@
-﻿using ProjectB_TaskManager.Enums;
+﻿using ProjectB_TaskManager.Classes.General;
+using ProjectB_TaskManager.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -90,7 +91,30 @@ namespace ProjectB_TaskManager.Classes.MyTasks
 
         public override string GetTableRow()
         {
-            throw new NotImplementedException();
+            StringBuilder tableRow = new StringBuilder("| ");
+            StringFormatter formatter = new StringFormatter();
+
+            if (courseName.Length > 10)
+            {
+                 tableRow.AppendLine(formatter.FormatToLength(courseName, 10) + " | ");
+            }
+            else
+            {
+                tableRow.AppendLine(courseName + new String(' ', 10 - courseName.Length) + " | ");
+            }
+
+            if (description.Length > 20)
+            {
+                tableRow.AppendLine(formatter.FormatToLength(description, 20) + " | ");
+            }
+            else
+            {
+                tableRow.AppendLine(description + new String(' ', 10 - description.Length) + " | ");
+            }
+
+            tableRow.AppendLine(deadline.ToString("dd.MM.yyyy") + " |");
+
+            return tableRow.ToString();
         }
     }
 }
