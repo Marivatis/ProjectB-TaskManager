@@ -112,7 +112,6 @@ namespace ProjectB_TaskManager.Classes.MyTasks
             tableRow.Append(description[0] + " | ");
 
             tableRow.Append(formatter.FormatToLength(status.ToString(), 11) + " | ");
-
             tableRow.Append(deadline.ToString("dd.MM.yyyy") + " |");
 
             for (int i = 1; i < description.Length; i++)
@@ -121,14 +120,10 @@ namespace ProjectB_TaskManager.Classes.MyTasks
                 tableRow.Append(formatter.FormatToLength(string.Empty, 11) + " | ");
 
                 if (i == description.Length - 1) 
-                {
                     tableRow.Append(formatter.FormatToLength(description[i], 21) + " | ");
-                }
                 else
-                {
                     tableRow.Append(description[i] + " | ");
-                }                    
-                
+                                    
                 tableRow.Append(formatter.FormatToLength(string.Empty, 11) + " | ");
                 tableRow.Append(formatter.FormatToLength(string.Empty, 10) + " | ");
             }
