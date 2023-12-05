@@ -9,19 +9,20 @@ namespace ProjectB_TaskManager.Classes.MyTasks
         private DateTime deadline;
         private MyTaskStatus status;
 
-        public string Description { get; set; }
+        public abstract string Description { get; set; }
         public abstract MyTaskStatus Status { get; set; }
         public abstract DateTime Deadline { get; set;  }
 
         public TimeSpan RemainingTime => Deadline - DateTime.UtcNow;
 
-        public virtual bool IsOverdue()
-        {
-            return RemainingTime <= TimeSpan.Zero;
-        }
         public void MarkAsCompleted()
         {
             Status = MyTaskStatus.Completed;
+        }
+
+        public virtual bool IsOverdue()
+        {
+            return RemainingTime <= TimeSpan.Zero;
         }
 
         public abstract override int GetHashCode();
