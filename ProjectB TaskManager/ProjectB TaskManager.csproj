@@ -49,6 +49,7 @@
     <Compile Include="Classes\General\Program.cs" />
     <Compile Include="Classes\MyTasks\MyTask.cs" />
     <Compile Include="Classes\MyTasks\MyTaskManager.cs" />
+    <Compile Include="Classes\MyTasks\MyUniversityTask.cs" />
     <Compile Include="Enums\MyTaskStatus.cs" />
     <Compile Include="Interfaces\IDuplicateCheckable.cs" />
     <Compile Include="Interfaces\ITablePrintable.cs" />
