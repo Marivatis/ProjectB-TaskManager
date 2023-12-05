@@ -80,6 +80,14 @@ namespace ProjectB_TaskManager.Classes.MyTasks
             return tasks.Remove(item);
         }
         /// <summary>
+        /// Removes the element at the specified index of the task manager list.
+        /// </summary>
+        /// <param name="index"></param>
+        public void RemoveAt(int index)
+        {
+            tasks.RemoveAt(index);
+        }
+        /// <summary>
         /// Copies all tasks to List<MyTask> list and returns it.
         /// </summary>
         public List<MyTask> ToList()
