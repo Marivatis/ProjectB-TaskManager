@@ -9,12 +9,20 @@ namespace ProjectB_TaskManager.Classes.Consoles
 
         public TablePrinter(List<ITablePrintable> printableObjects)
         {
-            throw new NotImplementedException();
+            this.printableObjects = printableObjects;
         }
 
         public void PrintTable()
         {
-            throw new NotImplementedException();
+            Console.WriteLine(printableObjects[0].GetTableFooter());
+            Console.WriteLine(printableObjects[0].GetTableHeader());
+            Console.WriteLine(printableObjects[0].GetTableFooter());
+
+            foreach (ITablePrintable item in printableObjects)
+            {
+                Console.WriteLine(item.GetTableRow());
+                Console.WriteLine(item.GetTableFooter());
+            }
         }
     }
 }
