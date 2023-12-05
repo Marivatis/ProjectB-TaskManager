@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectB_TaskManager.Classes.Consoles;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,8 @@ namespace ProjectB_TaskManager.Classes.General
     {
         static void Main(string[] args)
         {
+            MyConsole myConsole = new MyConsole();
+            myConsole.Run();
         }
     }
 }
