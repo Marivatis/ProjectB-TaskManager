@@ -16,7 +16,7 @@ namespace ProjectB_TaskManager.Classes.General
 
             for (int i = 0; i < str.Length; i++)
             {                
-                if (i + maxLength - 1 >= str.Length)
+                if (i + maxLength > str.Length)
                 {
                     strPart = str.Substring(i, i + str.Length - 1);
                     formatedString.Append(strPart);
