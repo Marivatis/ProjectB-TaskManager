@@ -3,72 +3,40 @@ using System;
 
 namespace ProjectB_TaskManager.Classes.General
 {
-    public class MyTask : ITablePrintable
+    public abstract class MyTask : ITablePrintable
     {
         private int id;
         private string description;
         private DateTime deadline;
         private MyTaskStatus status;
 
-        public MyTask() : this(0, string.Empty, DateTime.MinValue, MyTaskStatus.NotStarted) { }
+        public int Id => id;
+        public string Description { get; set; }
+        public abstract MyTaskStatus Status { get; set; }
+        public abstract DateTime Deadline { get; set;  }
 
-        public MyTask(int id, string description, DateTime deadline, MyTaskStatus status)
-        {
-            throw new NotImplementedException();
-        }
-        
-        public int Id
-        {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
-        }
-        public string Description
-        {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
-        }
-        public MyTaskStatus Status
-        {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
-        }
-        public DateTime Deadline
-        {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
-        }
+        public TimeSpan RemainingTime => Deadline - DateTime.UtcNow;
 
-        public TimeSpan ReamingTime
+        public virtual bool IsOverdue()
         {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
-        }
-
-        public bool IsOverdue()
-        {   
-            throw new NotImplementedException();
+            return RemainingTime <= TimeSpan.Zero;
         }
         public void MarkAsCompleted()
         {
-            throw new NotImplementedException();
+            Status = MyTaskStatus.Completed;
         }
 
         public override int GetHashCode()
         {
-            throw new NotImplementedException();
+            int hash = 3;
+
+            hash += Id.GetHashCode();
+
+            return hash;
         }
-        
-        public string GetTableHeader()
-        {
-            throw new NotImplementedException();
-        }
-        public string GetTableRow()
-        {
-            throw new NotImplementedException();
-        }
-        public string GetTableFooter()
-        {
-            throw new NotImplementedException();
-        }
+
+        public abstract string GetTableHeader();
+        public abstract string GetTableRow();
+        public abstract string GetTableFooter();
     }
 }
