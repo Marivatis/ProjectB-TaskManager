@@ -44,6 +44,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Consoles\MyConsole.cs" />
+    <Compile Include="Classes\Consoles\MyConsoleReader.cs" />
+    <Compile Include="Classes\Consoles\Reader.cs" />
     <Compile Include="Classes\Consoles\TablePrinter.cs" />
     <Compile Include="Classes\General\DataReader.cs" />
     <Compile Include="Classes\General\DataWriter.cs" />
