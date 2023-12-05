@@ -5,15 +5,34 @@ namespace ProjectB_TaskManager.Classes.MyTasks
 {
     public abstract class MyTask : ITablePrintable
     {
+        protected int id;
         protected string description;
         protected DateTime deadline;
         protected MyTaskStatus status;
 
-        protected MyTask(string description, DateTime deadline, MyTaskStatus status) 
+        protected MyTask(int id,string description, DateTime deadline, MyTaskStatus status) 
         {
+            this.id = id;
             this.description = description;
             this.deadline = deadline;
             this.status = status;
+        }
+
+        public int Id
+        {
+            get 
+            {
+                return id; 
+            }
+            set
+            {
+                if (value > 99)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value), "Id must be from 1 to 99.");
+                }
+
+                id = value;
+            }
         }
 
         public abstract string Description { get; set; }      

@@ -16,9 +16,14 @@ namespace ProjectB_TaskManager.Classes.MyTasks
             random = new Random();
         }
 
+        public int GetId()
+        {
+            return random.Next(1, 100);
+        }
+
         public string GetTitle()
         {
-            return $"Some Title {random.Next(10, 100)}";
+            return $"Some Title {random.Next(1, 100)}";
         }
 
         public string GetCourseName()
@@ -28,7 +33,7 @@ namespace ProjectB_TaskManager.Classes.MyTasks
 
         public string GetDescription()
         {
-            return $"Some Description {random.Next(10, 100)}";
+            return $"Some Description {random.Next(1, 100)}";
         }
 
         public MyTaskStatus GetTaskStatus()

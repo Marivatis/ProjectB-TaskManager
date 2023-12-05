@@ -13,10 +13,10 @@ namespace ProjectB_TaskManager.Classes.MyTasks
         private string courseName;
 
         public MyUniversityTask()
-            : this("No Course", "No Description", DateTime.MinValue, MyTaskStatus.NotStarted) { }
+            : this(0, "No Course", "No Description", DateTime.MinValue, MyTaskStatus.NotStarted) { }
 
-        public MyUniversityTask(string courseName, string description, DateTime deadline, MyTaskStatus status)
-            : base(description, deadline, status)
+        public MyUniversityTask(int id, string courseName, string description, DateTime deadline, MyTaskStatus status)
+            : base(id, description, deadline, status)
         {
             this.courseName = courseName;
         }
@@ -73,27 +73,29 @@ namespace ProjectB_TaskManager.Classes.MyTasks
         {
             int hash = 4;
 
+            hash += id.GetHashCode();
             hash += courseName.GetHashCode();
-            hash += description.GetHashCode();
 
             return hash;
         }
 
         public override string GetTableFooter()
         {
+            // Id Length --> 2
             // Course Name Length --> 11
             // Task Description Length --> 21
             // Task Status Length --> 11
             // Deadline Length --> 10
-            // All Borders Length --> 13
+            // All Borders Length --> 16
 
-            return new String('-', 66);
+            return new String('-', 71);
         }
         public override string GetTableHeader()
         {
             StringBuilder tableHeader = new StringBuilder("| ");
             StringFormatter formatter = new StringFormatter();
 
+            tableHeader.Append(formatter.FormatToLength("Id", 2) + " | ");
             tableHeader.Append(formatter.FormatToLength("Course Name", 11) + " | ");
             tableHeader.Append(formatter.FormatToLength("Task Description", 21) + " | ");
             tableHeader.Append(formatter.FormatToLength("Task Status", 11) + " | ");
@@ -106,6 +108,7 @@ namespace ProjectB_TaskManager.Classes.MyTasks
             StringBuilder tableRow = new StringBuilder("| ");
             StringFormatter formatter = new StringFormatter();
 
+            tableRow.Append(formatter.FormatToLength(id.ToString(), 2) + " | ");
             tableRow.Append(formatter.FormatToLength(courseName, 11) + " | ");
 
             string[] description = formatter.FormatToLength(this.description, 21).Split('\n');
@@ -117,6 +120,7 @@ namespace ProjectB_TaskManager.Classes.MyTasks
             for (int i = 1; i < description.Length; i++)
             {
                 tableRow.Append("\n| ");
+                tableRow.Append(formatter.FormatToLength(string.Empty, 2) + " | ");
                 tableRow.Append(formatter.FormatToLength(string.Empty, 11) + " | ");
 
                 if (i == description.Length - 1) 

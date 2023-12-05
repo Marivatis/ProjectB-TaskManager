@@ -99,6 +99,7 @@ namespace ProjectB_TaskManager.Classes.Consoles
             {
                 MyUniversityTask task = new MyUniversityTask();
 
+                task.Id = MyConsoleReader.ReadInt32("Enter task id --> ", 1, 99);
                 task.CourseName = MyConsoleReader.ReadString("Enter course name --> ");
                 task.Description = MyConsoleReader.ReadString("Enter task description --> ");
                 task.Deadline = MyConsoleReader.ReadDateTime("Enter task deadline --> ", "dd.MM.yyyy");
@@ -122,6 +123,7 @@ namespace ProjectB_TaskManager.Classes.Consoles
             {
                 MyUniversityTask task = new MyUniversityTask();
 
+                task.Id = randomProperties.GetId();
                 task.CourseName = randomProperties.GetCourseName();
                 task.Description = randomProperties.GetDescription();
                 task.Deadline = randomProperties.GetDeadline();
@@ -137,6 +139,7 @@ namespace ProjectB_TaskManager.Classes.Consoles
             {
                 MyGeneralTask task = new MyGeneralTask();
 
+                task.Id = MyConsoleReader.ReadInt32("Enter task id --> ", 1, 99);
                 task.Title = MyConsoleReader.ReadString("Enter title --> ");
                 task.Description = MyConsoleReader.ReadString("Enter task description --> ");
                 task.Deadline = MyConsoleReader.ReadDateTime("Enter task deadline --> ", "dd.MM.yyyy");
@@ -160,6 +163,7 @@ namespace ProjectB_TaskManager.Classes.Consoles
             {
                 MyGeneralTask task = new MyGeneralTask();
 
+                task.Id = randomProperties.GetId();
                 task.Title = randomProperties.GetTitle();
                 task.Description = randomProperties.GetDescription();
                 task.Deadline = randomProperties.GetDeadline();
