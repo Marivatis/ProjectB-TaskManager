@@ -5,9 +5,9 @@ namespace ProjectB_TaskManager.Classes.MyTasks
 {
     public abstract class MyTask : ITablePrintable
     {
-        private string description;
-        private DateTime deadline;
-        private MyTaskStatus status;
+        protected string description;
+        protected DateTime deadline;
+        protected MyTaskStatus status;
 
         public abstract string Description { get; set; }
         public abstract MyTaskStatus Status { get; set; }
