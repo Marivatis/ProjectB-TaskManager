@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace ProjectB_TaskManager.Classes.General
+namespace ProjectB_TaskManager.Classes.MyTasks
 {
     public class MyTaskManager : ICollection, IEnumerable<MyTask>, IDuplicateCheckable<MyTask>
     {
