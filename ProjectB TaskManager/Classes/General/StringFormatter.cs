@@ -8,7 +8,7 @@ namespace ProjectB_TaskManager.Classes.General
 {
     public class StringFormatter
     {
-        public static string FormatToLength(string str, int maxLength)
+        public string FormatToLength(string str, int maxLength)
         {
             StringBuilder formatedString = new StringBuilder();
 
