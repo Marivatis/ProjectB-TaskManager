@@ -107,10 +107,31 @@ namespace ProjectB_TaskManager.Classes.MyTasks
             StringFormatter formatter = new StringFormatter();
 
             tableRow.Append(formatter.FormatToLength(courseName, 11) + " | ");
-            tableRow.Append(formatter.FormatToLength(description, 21) + " | ");
+
+            string[] description = formatter.FormatToLength(this.description, 21).Split('\n');
+            tableRow.Append(description[0] + " | ");
+
             tableRow.Append(formatter.FormatToLength(status.ToString(), 11) + " | ");
 
             tableRow.Append(deadline.ToString("dd.MM.yyyy") + " |");
+
+            for (int i = 1; i < description.Length; i++)
+            {
+                tableRow.Append("\n| ");
+                tableRow.Append(formatter.FormatToLength(string.Empty, 11) + " | ");
+
+                if (i == description.Length - 1) 
+                {
+                    tableRow.Append(formatter.FormatToLength(description[i], 21) + " | ");
+                }
+                else
+                {
+                    tableRow.Append(description[i] + " | ");
+                }                    
+                
+                tableRow.Append(formatter.FormatToLength(string.Empty, 11) + " | ");
+                tableRow.Append(formatter.FormatToLength(string.Empty, 10) + " | ");
+            }
 
             return tableRow.ToString();
         }

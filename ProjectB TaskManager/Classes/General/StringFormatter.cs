@@ -29,19 +29,22 @@ namespace ProjectB_TaskManager.Classes.General
             StringBuilder formatedString = new StringBuilder();
 
             string strPart;
+            int index = 0;
 
-            for (int i = 0; i < str.Length; i++)
+            while (index < str.Length)
             {
-                if (i + length > str.Length)
+                if (index + length >= str.Length)
                 {
-                    strPart = str.Substring(i, i + str.Length - 1);
+                    strPart = str.Substring(index, str.Length - index - 1);
                     formatedString.Append(strPart);
                 }
                 else
                 {
-                    strPart = str.Substring(i, i + length - 1);
+                    strPart = str.Substring(index, length - 1);
                     formatedString.Append(strPart + '-' + '\n');
                 }
+
+                index += length;
             }
 
             return formatedString.ToString();
