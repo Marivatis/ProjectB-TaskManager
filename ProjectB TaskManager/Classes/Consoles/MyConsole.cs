@@ -55,9 +55,12 @@ namespace ProjectB_TaskManager.Classes.Consoles
                     tablePrinter = new TablePrinter(list);
                     tablePrinter.PrintTable();
                     break;
-                case 3: // Find tasks
+                case 3: // Sort tasks by remaining date
+                    taskManager.SortTasksByRemainingDate();
+                    Console.WriteLine("Tasks has been successfully sorted!");
                     break;
                 case 4: // Delete task
+                    
                     break;
                 case 5: // Clear task manager
                     break;

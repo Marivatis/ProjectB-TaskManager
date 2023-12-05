@@ -52,6 +52,7 @@
     <Compile Include="Classes\General\DataWriter.cs" />
     <Compile Include="Classes\General\Program.cs" />
     <Compile Include="Classes\General\StringFormatter.cs" />
+    <Compile Include="Classes\MyTasks\MyGeneralTask.cs" />
     <Compile Include="Classes\MyTasks\MyTask.cs" />
     <Compile Include="Classes\MyTasks\MyTaskManager.cs" />
     <Compile Include="Classes\MyTasks\MyTaskRandomProperties.cs" />

@@ -12,9 +12,9 @@ namespace ProjectB_TaskManager.Classes.Consoles
         {
             Console.WriteLine("[1] - Add task");
             Console.WriteLine("[2] - Print tasks");
-            Console.WriteLine("[3] - Find tasks");
-            Console.WriteLine("[4] - Delete task");
-            Console.WriteLine("[5] - Clear task");
+            Console.WriteLine("[3] - Sort tasks by remaining date");
+            Console.WriteLine("[4] - Remove task");
+            Console.WriteLine("[5] - Clear task manager list");
             Console.WriteLine("[6] - Save tasks to file");
             Console.WriteLine("[7] - Load tasks from file");
             Console.WriteLine("[8] - Show main menu");
