@@ -5,19 +5,19 @@ using System.Collections.Generic;
 
 namespace ProjectB_TaskManager.Classes.MyTasks
 {
-    public class MyTaskManager : ICollection, IEnumerable<MyTask>, IDuplicateCheckable<MyTask>
+    public class MyTaskManager : ICollection, IEnumerable<MyTask>, IDuplicateCheckable
     {
         private List<MyTask> tasks;
 
         public MyTaskManager()
         {
-            throw new NotImplementedException();
+            tasks = new List<MyTask>();
         }
 
-        public int Count => throw new NotImplementedException();
+        public int Count => tasks.Count;
 
-        public object SyncRoot => throw new NotImplementedException();
-        public bool IsSynchronized => throw new NotImplementedException();
+        public object SyncRoot => ((ICollection)tasks).SyncRoot;
+        public bool IsSynchronized => ((ICollection)tasks).IsSynchronized;
 
         public MyTask this[int index]
         {
@@ -27,7 +27,7 @@ namespace ProjectB_TaskManager.Classes.MyTasks
 
         public void Add(MyTask item)
         {
-            throw new NotImplementedException();
+            
         }
         public void Clear()
         {
@@ -64,7 +64,7 @@ namespace ProjectB_TaskManager.Classes.MyTasks
             throw new NotImplementedException();
         }
 
-        bool IDuplicateCheckable<MyTask>.IsDuplicate(MyTask item)
+        public bool IsDuplicate(MyTask item)
         {
             throw new NotImplementedException();
         }

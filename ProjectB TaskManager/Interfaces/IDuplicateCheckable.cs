@@ -1,8 +1,9 @@
-﻿
+﻿using ProjectB_TaskManager.Classes.MyTasks;
+
 namespace ProjectB_TaskManager.Interfaces
 {
-    public interface IDuplicateCheckable<T>
+    public interface IDuplicateCheckable
     {
-        bool IsDuplicate(T item);
+        bool IsDuplicate(MyTask item);
     }
 }
