@@ -38,7 +38,7 @@ namespace ProjectB_TaskManager.Classes.MyTasks
 
         public DateTime GetDeadline()
         {
-            int year = random.Next(2024, 2035);
+            int year = random.Next(2024, 2025);
             int manth = random.Next(1, 13);
             int day = random.Next(1, DateTime.DaysInMonth(year, manth) + 1);
 

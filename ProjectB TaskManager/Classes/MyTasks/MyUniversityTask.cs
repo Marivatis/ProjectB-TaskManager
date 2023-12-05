@@ -29,9 +29,9 @@ namespace ProjectB_TaskManager.Classes.MyTasks
             }
             set
             {
-                if (value.Length > 20)
+                if (value.Length > 11)
                 {
-                    throw new ArgumentException(nameof(value), "The course name length must be from 1 to 20 characters!");
+                    throw new ArgumentException(nameof(value), "The course name length must be from 1 to 11 characters!");
                 }
 
                 if (string.IsNullOrEmpty(value)) 
@@ -45,7 +45,7 @@ namespace ProjectB_TaskManager.Classes.MyTasks
             }
         }
 
-        public override string Description 
+        public override string Description
         {
             get 
             {
