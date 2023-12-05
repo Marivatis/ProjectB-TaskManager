@@ -94,10 +94,10 @@ namespace ProjectB_TaskManager.Classes.MyTasks
             StringBuilder tableHeader = new StringBuilder("| ");
             StringFormatter formatter = new StringFormatter();
 
-            tableHeader.AppendLine(formatter.FormatToLength("Course Name", 11) + " | ");
-            tableHeader.AppendLine(formatter.FormatToLength("Task Description", 21) + " | ");
-            tableHeader.AppendLine(formatter.FormatToLength("Task Status", 11) + " | ");
-            tableHeader.AppendLine(formatter.FormatToLength("Deadline", 10) + " |");
+            tableHeader.Append(formatter.FormatToLength("Course Name", 11) + " | ");
+            tableHeader.Append(formatter.FormatToLength("Task Description", 21) + " | ");
+            tableHeader.Append(formatter.FormatToLength("Task Status", 11) + " | ");
+            tableHeader.Append(formatter.FormatToLength("Deadline", 10) + " |");
 
             return tableHeader.ToString();
         }
@@ -106,11 +106,11 @@ namespace ProjectB_TaskManager.Classes.MyTasks
             StringBuilder tableRow = new StringBuilder("| ");
             StringFormatter formatter = new StringFormatter();
 
-            tableRow.AppendLine(formatter.FormatToLength(courseName, 11) + " | ");
-            tableRow.AppendLine(formatter.FormatToLength(description, 21) + " | ");
-            tableRow.AppendLine(formatter.FormatToLength(status.ToString(), 11) + " | ");
+            tableRow.Append(formatter.FormatToLength(courseName, 11) + " | ");
+            tableRow.Append(formatter.FormatToLength(description, 21) + " | ");
+            tableRow.Append(formatter.FormatToLength(status.ToString(), 11) + " | ");
 
-            tableRow.AppendLine(deadline.ToString("dd.MM.yyyy") + " |");
+            tableRow.Append(deadline.ToString("dd.MM.yyyy") + " |");
 
             return tableRow.ToString();
         }

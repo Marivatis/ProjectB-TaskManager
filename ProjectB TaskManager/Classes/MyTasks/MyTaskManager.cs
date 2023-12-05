@@ -127,9 +127,9 @@ namespace ProjectB_TaskManager.Classes.MyTasks
         /// </returns>
         public bool IsDuplicate(MyTask item)
         {
-            foreach (MyTask file in tasks)
+            foreach (MyTask task in tasks)
             {
-                if (item.GetHashCode() == file.GetHashCode())
+                if (item.GetHashCode() == task.GetHashCode())
                     return true;
             }
 
