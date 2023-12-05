@@ -49,7 +49,7 @@ namespace ProjectB_TaskManager.Classes.General
 
         private string FormatToBiggerLength(string str, int length)
         {
-            return str + new String(' ', str.Length - length);
+            return str + new String(' ', length - str.Length);
         }
     }
 }
