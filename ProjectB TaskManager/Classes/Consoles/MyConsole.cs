@@ -46,21 +46,15 @@ namespace ProjectB_TaskManager.Classes.Consoles
                     AddTaskSwitch(option);
                     break;
                 case 2: // Print tasks
-                    List<ITablePrintable> list = ToTablePrintableList(taskManager.ToList(), typeof(MyUniversityTask));
-                    TablePrinter tablePrinter = new TablePrinter(list);
-                    tablePrinter.PrintTable();
-
-                    Console.WriteLine();
-                    list = ToTablePrintableList(taskManager.ToList(), typeof(MyGeneralTask));
-                    tablePrinter = new TablePrinter(list);
-                    tablePrinter.PrintTable();
+                    PrintUniversityTasks();
+                    PrintGeneralTasks();
                     break;
                 case 3: // Sort tasks by remaining date
                     taskManager.SortTasksByRemainingDate();
                     Console.WriteLine("Tasks has been successfully sorted!");
                     break;
                 case 4: // Delete task
-                    
+                    RemoveTask();
                     break;
                 case 5: // Clear task manager
                     break;
@@ -153,7 +147,7 @@ namespace ProjectB_TaskManager.Classes.Consoles
                 AddGeneralTask();
             }
         }
-        private void AddGeneralTasksRandomly() 
+        private void AddGeneralTasksRandomly()
         {
             int count = MyConsoleReader.ReadInt32("Enter how many tasks you want to add --> ");
 
@@ -171,6 +165,50 @@ namespace ProjectB_TaskManager.Classes.Consoles
 
                 taskManager.Add(task);
             }
+        }
+
+        private void PrintUniversityTasks()
+        {
+            List<ITablePrintable> list = ToTablePrintableList(taskManager.ToList(), typeof(MyUniversityTask));
+            TablePrinter tablePrinter = new TablePrinter(list);
+            tablePrinter.PrintTable();
+        }
+        private void PrintGeneralTasks()
+        {
+            List<ITablePrintable> list = ToTablePrintableList(taskManager.ToList(), typeof(MyGeneralTask));
+            TablePrinter tablePrinter = new TablePrinter(list);
+            tablePrinter.PrintTable();
+        }
+
+        private void RemoveTask()
+        {
+            string typeString = MyConsoleReader.ReadString("Enter task type [University/General] -->");
+
+            Type type = null;
+            if (typeString.Equals("University"))
+            {
+                PrintUniversityTasks();
+                type = typeof(MyUniversityTask);
+            }
+            else
+            {
+                PrintGeneralTasks();
+                type = typeof(MyGeneralTask);
+            }                
+
+            int id = MyConsoleReader.ReadInt32("Enter task id you want to remove --> ", 1, 99);
+
+            for (int i = 0; i < taskManager.Count; i++)
+            {
+                if (taskManager[i].GetType() == type && taskManager[i].Id == id)
+                {
+                    taskManager.RemoveAt(i);
+                    Console.WriteLine("Task has been successfully removed.");
+                    return;
+                }
+            }
+
+            Console.WriteLine("No task whith this id was found.");
         }
 
         private List<ITablePrintable> ToTablePrintableList(List<MyTask> tasks, Type type)
