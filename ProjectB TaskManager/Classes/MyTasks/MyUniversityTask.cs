@@ -70,7 +70,12 @@ namespace ProjectB_TaskManager.Classes.MyTasks
 
         public override int GetHashCode()
         {
-            throw new NotImplementedException();
+            int hash = 4;
+
+            hash += courseName.GetHashCode();
+            hash += description.GetHashCode();
+
+            return hash;
         }
 
         public override string GetTableFooter()
