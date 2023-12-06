@@ -2,6 +2,7 @@
 using ProjectB_TaskManager.Classes.MyTasks;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,17 +11,17 @@ namespace ProjectB_TaskManager.Classes.Consoles
 {
     public class MyConsole
     {
-        private string path = "D:\\Работы ВУЗ\\Курс 2.1\\ООП\\Проект\\Часть Б\\Tasks\\Tasks.json";
+        private string path; // = "D:\\Работы ВУЗ\\Курс 2.1\\ООП\\Проект\\Часть Б\\Tasks\\Tasks.json";
 
         private MyTaskManager taskManager;
 
         public MyConsole() 
         {
-            List<MyTask> tasks = new List<MyTask>();
+            GetProgramFilesPath();
 
-            ListDataReader.ReadFromJsonFile(path, ref tasks);
+            Console.WriteLine($"[Tasks saving file path is: {path}]");
 
-            taskManager = new MyTaskManager(tasks);
+            LoadTasks();
         }
 
         public void Run()
@@ -55,8 +56,17 @@ namespace ProjectB_TaskManager.Classes.Consoles
 
                     AddTaskSwitch(option);
                     break;
-                case 2: // Print tasks
+                case 2: // Print 
+                    if (taskManager.Count == 0)
+                    {
+                        Console.WriteLine("Task list is empty.");
+                        break;
+                    }
+
+                    Console.WriteLine("Yuor university tasks:");
                     PrintUniversityTasks();
+
+                    Console.WriteLine("Your general tasks:");
                     PrintGeneralTasks();
                     break;
                 case 3: // Sort tasks by remaining date
@@ -104,10 +114,12 @@ namespace ProjectB_TaskManager.Classes.Consoles
             {
                 MyUniversityTask task = new MyUniversityTask();
 
-                task.Id = MyConsoleReader.ReadInt32("Enter task id --> ", 1, 99);
+                task.Id = MyConsoleReader.ReadInt32("Enter task id [1, 99] --> ", 1, 99);
                 task.CourseName = MyConsoleReader.ReadString("Enter course name --> ");
                 task.Description = MyConsoleReader.ReadString("Enter task description --> ");
-                task.Deadline = MyConsoleReader.ReadDateTime("Enter task deadline --> ", "dd.MM.yyyy");
+                task.Deadline = MyConsoleReader.ReadDateTime("Enter task deadline [dd.mm.yyyy] --> ", "dd.MM.yyyy");
+
+                PrintPossibleTaskStatus();
                 task.Status = MyConsoleReader.ReadMyTaskStatus("Enter task status --> ");
 
                 taskManager.Add(task);
@@ -144,10 +156,10 @@ namespace ProjectB_TaskManager.Classes.Consoles
             {
                 MyGeneralTask task = new MyGeneralTask();
 
-                task.Id = MyConsoleReader.ReadInt32("Enter task id --> ", 1, 99);
+                task.Id = MyConsoleReader.ReadInt32("Enter task id [1, 99] --> ", 1, 99);
                 task.Title = MyConsoleReader.ReadString("Enter title --> ");
                 task.Description = MyConsoleReader.ReadString("Enter task description --> ");
-                task.Deadline = MyConsoleReader.ReadDateTime("Enter task deadline --> ", "dd.MM.yyyy");
+                task.Deadline = MyConsoleReader.ReadDateTime("Enter task deadline [dd.mm.yyyy] --> ", "dd.MM.yyyy");
                 task.Status = MyConsoleReader.ReadMyTaskStatus("Enter task status --> ");
 
                 taskManager.Add(task);
@@ -253,10 +265,32 @@ namespace ProjectB_TaskManager.Classes.Consoles
             Console.WriteLine("No task whith this id was found.");
         }
 
+        private void PrintPossibleTaskStatus()
+        {
+            string status = "[NotStarted, Inprogress, Completed, Overdue]";
+
+            Console.WriteLine(status);
+        }
+
+        private void GetProgramFilesPath()
+        {
+            string basePath = AppDomain.CurrentDomain.BaseDirectory;
+            string relativePath = Path.Combine("..", "..", "..", "Tasks","Tasks.json");
+
+            path = Path.GetFullPath(Path.Combine(basePath, relativePath));
+        }
         private void SaveTasks()
         {
             ListDataWriter<MyTask> dataWriter = new ListDataWriter<MyTask>(taskManager.ToList());
             dataWriter.WriteToJsonFile(path);
+        }
+        private void LoadTasks()
+        {
+            List<MyTask> tasks = new List<MyTask>();
+
+            ListDataReader.ReadFromJsonFile(path, ref tasks);
+
+            taskManager = new MyTaskManager(tasks);
         }
 
         private List<ITablePrintable> ToTablePrintableList(List<MyTask> tasks, Type type)

@@ -15,7 +15,11 @@ namespace ProjectB_TaskManager.Classes.Consoles
 
         public void PrintTable()
         {
+            if (printableObjects.Count == 0)
+                return;
+
             string table = GetTable();
+
             Console.WriteLine(table);
         }
 
