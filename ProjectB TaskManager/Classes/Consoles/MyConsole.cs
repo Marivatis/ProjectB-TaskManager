@@ -18,7 +18,7 @@ namespace ProjectB_TaskManager.Classes.Consoles
         {
             List<MyTask> tasks = new List<MyTask>();
 
-            DataReader.ReadFromJsonFile(path, ref tasks);
+            ListDataReader.ReadFromJsonFile(path, ref tasks);
 
             taskManager = new MyTaskManager(tasks);
         }

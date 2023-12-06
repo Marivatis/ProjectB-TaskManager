@@ -52,12 +52,13 @@
     <Compile Include="Classes\Consoles\Printer.cs" />
     <Compile Include="Classes\Consoles\Reader.cs" />
     <Compile Include="Classes\Consoles\TablePrinter.cs" />
-    <Compile Include="Classes\General\DataReader.cs" />
+    <Compile Include="Classes\General\ListDataReader.cs" />
     <Compile Include="Classes\General\DataWriter.cs" />
     <Compile Include="Classes\General\Program.cs" />
     <Compile Include="Classes\General\StringFormatter.cs" />
     <Compile Include="Classes\MyTasks\MyGeneralTask.cs" />
     <Compile Include="Classes\MyTasks\MyTask.cs" />
+    <Compile Include="Classes\MyTasks\MyTaskConverter.cs" />
     <Compile Include="Classes\MyTasks\MyTaskManager.cs" />
     <Compile Include="Classes\MyTasks\MyTaskRandomProperties.cs" />
     <Compile Include="Classes\MyTasks\MyUniversityTask.cs" />

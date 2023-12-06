@@ -81,11 +81,11 @@ namespace ProjectB_TaskManager.Classes.MyTasks
 
         public override string GetTableFooter()
         {
-            // Id Length --> 2
-            // Title Length --> 20
-            // Task Description Length --> 21
-            // Task Status Length --> 11
-            // Deadline Length --> 10
+            // Id Max Length --> 2
+            // Title Max Length --> 20
+            // Task Description Max Length --> 21
+            // Task Status Max Length --> 11
+            // Deadline Max Length --> 10
             // All Borders Length --> 16
 
             return new String('-', 80);
