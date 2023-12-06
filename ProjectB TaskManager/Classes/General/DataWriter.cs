@@ -9,54 +9,32 @@ using System.Xml;
 
 namespace ProjectB_TaskManager.Classes.General
 {
-    public class DataWriter
+    public class DataWriter<T>
     {
-        public static void WriteToJsonFile(List<MyTask> items, string path)
+        private readonly List<T> items;
+
+        public DataWriter(List<T> items) 
         {
-            //try
-            //{
-            //    if (items.Count == 0)
-            //        return false;
+            this.items = items;
+        }
 
-            //    string jsonString = string.Empty;
+        public bool WriteToJsonFile(string path)
+        {
+            try
+            {
+                if (items.Count == 0)
+                    return false;
 
-            //    DataContractJsonSerializer json = new DataContractJsonSerializer(typeof(MyTask));
+                string json = JsonConvert.SerializeObject(items, Newtonsoft.Json.Formatting.Indented);
+                File.WriteAllText(path, json);
 
-            //    using (FileStream file = new FileStream(path, FileMode.Create))
-            //    {
-            //        json.WriteObject(file, items);
-            //        file.Close();
-            //    }
-
-            //    return true;
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine(ex.Message);
-            //    return false;
-            //}
-
-            
-            string json = JsonConvert.SerializeObject(items, Newtonsoft.Json.Formatting.Indented);
-            File.WriteAllText(path, json);
-
-            //// Десериализация из JSON
-            //string jsonFromFile = File.ReadAllText("taskManager.json");
-            //MyTaskManager deserializedTaskManager = JsonConvert.DeserializeObject<MyTaskManager>(jsonFromFile);
-
-            //// Вывод информации
-            //foreach (var task in deserializedTaskManager)
-            //{
-            //    if (task is MyGeneralTask generalTask)
-            //    {
-            //        Console.WriteLine($"MyGeneralTask with GeneralProperty: {generalTask.GeneralProperty}");
-            //    }
-            //    else if (task is MyUniversityTask universityTask)
-            //    {
-            //        Console.WriteLine($"MyUniversityTask with UniversityProperty: {universityTask.UniversityProperty}");
-            //    }
-            //}
-
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
         }
     }
 }
