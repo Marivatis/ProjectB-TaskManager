@@ -10,11 +10,17 @@ namespace ProjectB_TaskManager.Classes.Consoles
 {
     public class MyConsole
     {
+        private string path = "D:\\Работы ВУЗ\\Курс 2.1\\ООП\\Проект\\Часть Б\\Tasks\\Tasks.json";
+
         private MyTaskManager taskManager;
 
         public MyConsole() 
         {
-            taskManager = new MyTaskManager();
+            List<MyTask> tasks = new List<MyTask>();
+
+            DataReader.ReadFromJsonFile(path, ref tasks);
+
+            taskManager = new MyTaskManager(tasks);
         }
 
         public void Run()
@@ -249,9 +255,8 @@ namespace ProjectB_TaskManager.Classes.Consoles
 
         private void SaveTasks()
         {
-            string path = "D:\\Работы ВУЗ\\Курс 2.1\\ООП\\Проект\\Часть Б\\Tasks\\";
-
-            ListDataWriter.WriteToJsonFile(taskManager.ToList(), path + "Tasks.json");
+            ListDataWriter<MyTask> dataWriter = new ListDataWriter<MyTask>(taskManager.ToList());
+            dataWriter.WriteToJsonFile(path);
         }
 
         private List<ITablePrintable> ToTablePrintableList(List<MyTask> tasks, Type type)

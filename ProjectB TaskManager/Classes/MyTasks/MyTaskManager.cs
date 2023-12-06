@@ -15,6 +15,10 @@ namespace ProjectB_TaskManager.Classes.MyTasks
         {
             tasks = new List<MyTask>();
         }
+        public MyTaskManager(List<MyTask> tasks)
+        {
+            this.tasks = tasks;
+        }
 
         /// <summary>
         /// Gets the number of elements contained in the task manager list.
