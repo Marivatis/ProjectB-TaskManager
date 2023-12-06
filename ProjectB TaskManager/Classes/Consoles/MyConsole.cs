@@ -31,7 +31,7 @@ namespace ProjectB_TaskManager.Classes.Consoles
 
             while (option != 0)
             {
-                option = MyConsoleReader.ReadInt32("Enter any main menu option --> ", 0, 5);
+                option = MyConsoleReader.ReadInt32("Enter any main menu option --> ", 0, 7);
 
                 MainMenuSwitch(option);
             }
