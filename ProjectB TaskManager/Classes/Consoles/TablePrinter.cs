@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace ProjectB_TaskManager.Classes.Consoles
 {
@@ -14,15 +15,25 @@ namespace ProjectB_TaskManager.Classes.Consoles
 
         public void PrintTable()
         {
-            Console.WriteLine(printableObjects[0].GetTableFooter());
-            Console.WriteLine(printableObjects[0].GetTableHeader());
-            Console.WriteLine(printableObjects[0].GetTableFooter());
+            string table = GetTable();
+            Console.WriteLine(table);
+        }
+
+        public string GetTable()
+        {
+            StringBuilder table = new StringBuilder();
+
+            table.AppendLine(printableObjects[0].GetTableFooter());
+            table.AppendLine(printableObjects[0].GetTableHeader());
+            table.AppendLine(printableObjects[0].GetTableFooter());
 
             foreach (ITablePrintable item in printableObjects)
             {
-                Console.WriteLine(item.GetTableRow());
-                Console.WriteLine(item.GetTableFooter());
+                table.AppendLine(item.GetTableRow());
+                table.AppendLine(item.GetTableFooter());
             }
+
+            return table.ToString();
         }
     }
 }
