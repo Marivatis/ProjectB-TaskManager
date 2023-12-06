@@ -1,4 +1,5 @@
-﻿using ProjectB_TaskManager.Classes.MyTasks;
+﻿using ProjectB_TaskManager.Classes.General;
+using ProjectB_TaskManager.Classes.MyTasks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,8 +29,6 @@ namespace ProjectB_TaskManager.Classes.Consoles
 
                 MainMenuSwitch(option);
             }
-
-            Console.WriteLine("Have a nice day!");
         }
 
         private void MainMenuSwitch(int mainMenuOption)
@@ -38,6 +37,11 @@ namespace ProjectB_TaskManager.Classes.Consoles
 
             switch (mainMenuOption)
             {
+                case 0:
+                    SaveTasks();
+
+                    Console.WriteLine("Have a nice day!");
+                    break;
                 case 1: // Add task
                     Printer.PrintAddMenu();
 
@@ -51,7 +55,7 @@ namespace ProjectB_TaskManager.Classes.Consoles
                     break;
                 case 3: // Sort tasks by remaining date
                     taskManager.SortTasksByRemainingDate();
-                    Console.WriteLine("Tasks has been successfully sorted!");
+                    Console.WriteLine("Tasks has been successfully sorted.");
                     break;
                 case 4: // Mark task as completed
                     MarkTaskAsCompleted();
@@ -60,12 +64,10 @@ namespace ProjectB_TaskManager.Classes.Consoles
                     RemoveTask();
                     break;
                 case 6: // Clear task manager
+                    taskManager.Clear();
+                    Console.WriteLine("Task manager list has been successfully cleared.");
                     break;
-                case 7: // Save tasks to file
-                    break;
-                case 8: // Load tasks from file
-                    break;
-                case 9: // Print main menu
+                case 7: // Print main menu
                     Printer.PrintMainMenu();
                     break;
             }
@@ -185,7 +187,7 @@ namespace ProjectB_TaskManager.Classes.Consoles
 
         private void RemoveTask()
         {
-            string typeString = MyConsoleReader.ReadString("Enter task type [University/General] -->");
+            string typeString = MyConsoleReader.ReadString("Enter task type [University/General] --> ");
 
             Type type = null;
             if (typeString.Equals("University"))
@@ -216,7 +218,7 @@ namespace ProjectB_TaskManager.Classes.Consoles
 
         private void MarkTaskAsCompleted()
         {
-            string typeString = MyConsoleReader.ReadString("Enter task type [University/General] -->");
+            string typeString = MyConsoleReader.ReadString("Enter task type [University/General] --> ");
 
             Type type = null;
             if (typeString.Equals("University"))
@@ -243,6 +245,13 @@ namespace ProjectB_TaskManager.Classes.Consoles
             }
 
             Console.WriteLine("No task whith this id was found.");
+        }
+
+        private void SaveTasks()
+        {
+            string path = "D:\\Работы ВУЗ\\Курс 2.1\\ООП\\Проект\\Часть Б\\Tasks\\";
+
+            DataWriter.WriteToJsonFile(taskManager.ToList(), path + "Tasks.json");
         }
 
         private List<ITablePrintable> ToTablePrintableList(List<MyTask> tasks, Type type)

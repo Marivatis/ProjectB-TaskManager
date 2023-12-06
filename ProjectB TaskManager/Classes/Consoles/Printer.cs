@@ -16,9 +16,7 @@ namespace ProjectB_TaskManager.Classes.Consoles
             Console.WriteLine("[4] - Mark task as comleted");
             Console.WriteLine("[5] - Remove task");
             Console.WriteLine("[6] - Clear task manager list");
-            Console.WriteLine("[7] - Save tasks to file");
-            Console.WriteLine("[8] - Load tasks from file");
-            Console.WriteLine("[9] - Show main menu");
+            Console.WriteLine("[7] - Show main menu");
             Console.WriteLine("[0] - Exit");
         }
 
