@@ -251,7 +251,7 @@ namespace ProjectB_TaskManager.Classes.Consoles
         {
             string path = "D:\\Работы ВУЗ\\Курс 2.1\\ООП\\Проект\\Часть Б\\Tasks\\";
 
-            DataWriter.WriteToJsonFile(taskManager.ToList(), path + "Tasks.json");
+            ListDataWriter.WriteToJsonFile(taskManager.ToList(), path + "Tasks.json");
         }
 
         private List<ITablePrintable> ToTablePrintableList(List<MyTask> tasks, Type type)

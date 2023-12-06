@@ -9,11 +9,11 @@ using System.Xml;
 
 namespace ProjectB_TaskManager.Classes.General
 {
-    public class DataWriter<T>
+    public class ListDataWriter<T>
     {
         private readonly List<T> items;
 
-        public DataWriter(List<T> items) 
+        public ListDataWriter(List<T> items) 
         {
             this.items = items;
         }
