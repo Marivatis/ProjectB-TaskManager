@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="ProjectB_TaskManager.Classes.MyTasks.MyTask">
+    <Position X="8.5" Y="0.5" Width="4.75" />
+    <TypeIdentifier>
+      <HashCode>AAQKAAAEABAgEBAAIAAIAAAAAAAAAIgAAAEAAAABAgA=</HashCode>
+      <FileName>Classes\MyTasks\MyTask.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProjectB_TaskManager.Classes.MyTasks.MyGeneralTask">
+    <Position X="6.75" Y="5.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAgEEAAAAAIAAAAAAAAAIgAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\MyTasks\MyGeneralTask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectB_TaskManager.Classes.MyTasks.MyTaskManager">
+    <Position X="15.5" Y="1.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAACAABAACAAAFAQAAAAQAAgECAgAEABQIAA=</HashCode>
+      <FileName>Classes\MyTasks\MyTaskManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProjectB_TaskManager.Classes.MyTasks.MyUniversityTask">
+    <Position X="11.5" Y="5.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAgEAAAAAAIAAAAAAAAAIgAAAAAAAAAgAA=</HashCode>
+      <FileName>Classes\MyTasks\MyUniversityTask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
