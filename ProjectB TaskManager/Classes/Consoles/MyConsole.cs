@@ -232,11 +232,9 @@ namespace ProjectB_TaskManager.Classes.Consoles
         {
             PrintSpecializedTable();
 
-            int id = MyConsoleReader.ReadInt32("Enter task id you want to remove --> ", 1, 99);
+            int id = MyConsoleReader.ReadInt32("Enter task id you completed --> ", 1, 99);
 
             taskManager.MarkAsCompleted(id);
-
-            Console.WriteLine("No task whith this id was found.");
         }
 
         private void PrintSpecializedTable()

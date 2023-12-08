@@ -22,9 +22,6 @@ namespace ProjectB_TaskManager.Classes.General
         {
             try
             {
-                if (items.Count == 0)
-                    return false;
-
                 string json = JsonConvert.SerializeObject(items, Newtonsoft.Json.Formatting.Indented);
                 File.WriteAllText(path, json);
 
