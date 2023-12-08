@@ -72,10 +72,7 @@ namespace ProjectB_TaskManager.Classes.MyTasks
 
         public TimeSpan RemainingTime => Deadline - DateTime.UtcNow;
 
-        public void MarkAsCompleted()
-        {
-            Status = MyTaskStatus.Completed;
-        }
+        public abstract void MarkAsCompleted();
 
         public virtual bool IsOverdue()
         {

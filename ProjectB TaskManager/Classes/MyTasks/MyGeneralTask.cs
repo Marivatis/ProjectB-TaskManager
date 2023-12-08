@@ -68,6 +68,11 @@ namespace ProjectB_TaskManager.Classes.MyTasks
             }
         }
 
+        public override void MarkAsCompleted()
+        {
+            Status = MyTaskStatus.Completed;
+        }
+
         public override int GetHashCode()
         {
             int hash = 4;
