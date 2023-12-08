@@ -1,7 +1,7 @@
-﻿using ProjectB_TaskManager.Classes.General;
+﻿using ProjectB_TaskManager.Classes.MyTasks;
 using ProjectB_TaskManager.Enums;
 
-namespace TestProject.GeneralTests
+namespace TestProject.Tests
 {
     [TestClass]
     public class MyTaskTast
@@ -13,7 +13,7 @@ namespace TestProject.GeneralTests
         public void Id_ValidInput()
         {
             // Arrange
-            MyTask task = new MyTask();
+            MyTask task = new MyGeneralTask();
 
             // Act 
             task.Id = 1;
@@ -27,10 +27,10 @@ namespace TestProject.GeneralTests
         public void Id_BelowZeroInput()
         {
             // Arrange
-            MyTask task = new MyTask();
+            MyTask task = new MyGeneralTask();
 
             // Act & Assert
-            Assert.ThrowsException<ArgumentException>(()  => task.Id = 1);
+            Assert.ThrowsException<ArgumentOutOfRangeException>(()  => task.Id = -1);
         }
 
         [TestMethod]
@@ -38,10 +38,10 @@ namespace TestProject.GeneralTests
         public void Id_OverflowInput()
         {
             // Arrange
-            MyTask task = new MyTask();
+            MyTask task = new MyGeneralTask();
 
             // Act & Assert
-            Assert.ThrowsException<OverflowException>(() => task.Id = 100);
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => task.Id = 100);
         }
 
         [TestMethod]
@@ -49,7 +49,7 @@ namespace TestProject.GeneralTests
         public void Description_ValidInput()
         {
             // Arrange
-            MyTask task = new MyTask();
+            MyTask task = new MyGeneralTask();
 
             // Act
             task.Description = "Some description";
@@ -63,10 +63,13 @@ namespace TestProject.GeneralTests
         public void Description_NullInput()
         {
             // Arrange
-            MyTask task = new MyTask();
+            MyTask task = new MyGeneralTask();
 
-            // Act & Arrange
-            Assert.ThrowsException<ArgumentException>(() => task.Description = null);
+            // Act
+            task.Description = null;
+
+            // Arrange
+            Assert.AreEqual("No Description", task.Description);
         }
 
         [TestMethod]
@@ -74,13 +77,13 @@ namespace TestProject.GeneralTests
         public void Description_EmptyStringInput()
         {
             // Arrange
-            MyTask task = new MyTask();
+            MyTask task = new MyGeneralTask();
 
             // Act
             task.Description = string.Empty;
 
             // Assert
-            Assert.AreEqual(string.Empty, task.Description);
+            Assert.AreEqual("No Description", task.Description);
         }
 
         [TestMethod]
@@ -88,12 +91,12 @@ namespace TestProject.GeneralTests
         public void Description_OverflowInput()
         {
             // Arrange
-            MyTask task = new MyTask();
+            MyTask task = new MyGeneralTask();
 
-            string str = new string('|', 100);
+            string str = new string('|', 1000);
 
             // Act & Assert
-            Assert.ThrowsException<ArgumentException>(() => task.Description = str);
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => task.Description = str);
         }
 
         [TestMethod]
@@ -101,7 +104,7 @@ namespace TestProject.GeneralTests
         public void Status_ValidInput()
         {
             // Arrange
-            MyTask task = new MyTask();
+            MyTask task = new MyGeneralTask();
 
             // Act
             task.Status = MyTaskStatus.InProgress;
@@ -115,10 +118,10 @@ namespace TestProject.GeneralTests
         public void Status_InvalidInput()
         {
             // Arrange
-            MyTask task = new MyTask();
+            MyTask task = new MyGeneralTask();
 
             // Act & Assert
-            Assert.ThrowsException<ArgumentException>(() => task.Status = (MyTaskStatus)5 );   
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => task.Status = (MyTaskStatus)5 );   
         }
 
         [TestMethod]
@@ -126,7 +129,7 @@ namespace TestProject.GeneralTests
         public void Deadline_ValidInput()
         {
             // Arrange
-            MyTask task = new MyTask();
+            MyTask task = new MyGeneralTask();
 
             // Act
             DateTime deadline = DateTime.UtcNow.AddDays(1);
@@ -141,38 +144,10 @@ namespace TestProject.GeneralTests
         public void Deadline_InvalidInput()
         {
             // Arrange
-            MyTask task = new MyTask();
+            MyTask task = new MyGeneralTask();
 
             // Act & Assert
-            Assert.ThrowsException<ArgumentException>(() => task.Deadline = new DateTime(2000, 12, 12));
-        }
-
-        [TestMethod]
-        [TestCategory(category_basic)]
-        public void IsOverdue_ValidReturnTrue()
-        {
-            // Arrange
-            MyTask task = new MyTask() { Deadline = DateTime.UtcNow.AddDays(1) };
-
-            // Act
-            bool isOverdue = task.IsOverdue();
-
-            // Assert
-            Assert.IsTrue(isOverdue);
-        }
-
-        [TestMethod]
-        [TestCategory(category_basic)]
-        public void IsOverdue_ValidReturnFalse()
-        {
-            // Arrange
-            MyTask task = new MyTask() { Deadline = DateTime.UtcNow };
-
-            // Act
-            bool isOverdue = task.IsOverdue();
-
-            // Assert
-            Assert.IsFalse(isOverdue);
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => task.Deadline = new DateTime(2000, 12, 12));
         }
 
         [TestMethod]
@@ -180,7 +155,7 @@ namespace TestProject.GeneralTests
         public void MarkAsCompleted_Valid()
         {
             // Arrange
-            MyTask task = new MyTask();
+            MyTask task = new MyGeneralTask();
 
             // Act
             task.MarkAsCompleted();

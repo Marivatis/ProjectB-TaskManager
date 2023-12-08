@@ -26,7 +26,7 @@ namespace ProjectB_TaskManager.Classes.MyTasks
             }
             set
             {
-                if (value > 99)
+                if (value > 99 || value < 1)
                 {
                     throw new ArgumentOutOfRangeException(nameof(value), "Id must be from 1 to 99.");
                 }

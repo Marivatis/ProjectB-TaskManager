@@ -53,19 +53,18 @@ namespace ProjectB_TaskManager.Classes.MyTasks
             }
             set 
             {
-                if (value.Length > 100)
-                {
-                    throw new ArgumentException(nameof(value), "The description length must be from 1 to 100 characters!");
-                }
-
                 if (string.IsNullOrEmpty(value))
                 {
                     description = "No Description";
+                    return;
                 }
-                else
+
+                if (value.Length > 100)
                 {
-                    description = value;
+                    throw new ArgumentOutOfRangeException(nameof(value), "The description length must be from 1 to 100 characters!");
                 }
+
+                description = value;                
             }
         }
 

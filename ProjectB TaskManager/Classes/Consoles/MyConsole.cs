@@ -64,10 +64,10 @@ namespace ProjectB_TaskManager.Classes.Consoles
                     }
 
                     Console.WriteLine("Yuor university tasks:");
-                    PrintUniversityTasks();
+                    PrintTasks(typeof(MyUniversityTask));
 
                     Console.WriteLine("Your general tasks:");
-                    PrintGeneralTasks();
+                    PrintTasks(typeof(MyGeneralTask));
                     break;
                 case 3: // Sort tasks by remaining date
                     taskManager.SortTasksByRemainingDate();
@@ -190,15 +190,9 @@ namespace ProjectB_TaskManager.Classes.Consoles
             }
         }
 
-        private void PrintUniversityTasks()
+        private void PrintTasks(Type type)
         {
-            List<ITablePrintable> list = ToTablePrintableList(taskManager.ToList(), typeof(MyUniversityTask));
-            TablePrinter tablePrinter = new TablePrinter(list);
-            tablePrinter.PrintTable();
-        }
-        private void PrintGeneralTasks()
-        {
-            List<ITablePrintable> list = ToTablePrintableList(taskManager.ToList(), typeof(MyGeneralTask));
+            List<ITablePrintable> list = ToTablePrintableList(taskManager.ToList(), type);
             TablePrinter tablePrinter = new TablePrinter(list);
             tablePrinter.PrintTable();
         }
@@ -210,14 +204,14 @@ namespace ProjectB_TaskManager.Classes.Consoles
             Type type = null;
             if (typeString.Equals("University"))
             {
-                PrintUniversityTasks();
-                type = typeof(MyUniversityTask);
+                type = typeof(MyUniversityTask);                
             }
             else
             {
-                PrintGeneralTasks();
                 type = typeof(MyGeneralTask);
-            }                
+            }
+
+            PrintTasks(type);
 
             int id = MyConsoleReader.ReadInt32("Enter task id you want to remove --> ", 1, 99);
 
@@ -241,14 +235,14 @@ namespace ProjectB_TaskManager.Classes.Consoles
             Type type = null;
             if (typeString.Equals("University"))
             {
-                PrintUniversityTasks();
                 type = typeof(MyUniversityTask);
             }
             else
             {
-                PrintGeneralTasks();
                 type = typeof(MyGeneralTask);
             }
+
+            PrintTasks(type);
 
             int id = MyConsoleReader.ReadInt32("Enter task id you want to remove --> ", 1, 99);
 

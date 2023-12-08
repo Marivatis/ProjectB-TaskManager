@@ -44,12 +44,18 @@ namespace ProjectB_TaskManager.Classes.MyTasks
         /// Adds task to task manager list.
         /// </summary>
         /// <param name="item"></param>
+        /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="DuplicateNameException"></exception>
         public void Add(MyTask item)
         {
+            if (item is null)
+            {
+                throw new ArgumentNullException("The task has an null object reference.");
+            }
+
             if (IsDuplicate(item))
             {
-                throw new DuplicateNameException("Task whith this course name and description already exists!");
+                throw new DuplicateNameException("Task whith this course name and description already exists.");
             }
 
             tasks.Add(item);
