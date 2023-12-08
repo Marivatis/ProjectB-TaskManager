@@ -112,6 +112,21 @@ namespace ProjectB_TaskManager.Classes.MyTasks
             tasks = tasks.OrderBy(t => t.RemainingTime).ToList();
         }
         /// <summary>
+        /// Marks task with id <paramref name="id"/> as completed
+        /// </summary>
+        /// <param name="id"></param>
+        public void MarkAsCompleted(int id)
+        {
+            foreach (MyTask task in tasks)
+            {
+                if (task.Id == id)
+                {
+                    task.MarkAsCompleted();
+                    return;
+                }
+            }
+        }
+        /// <summary>
         /// Copies all tasks to MyTask[] array.
         /// </summary>
         /// <param name="array"></param>

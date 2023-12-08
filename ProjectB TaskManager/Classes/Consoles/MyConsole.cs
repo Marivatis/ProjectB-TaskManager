@@ -230,6 +230,17 @@ namespace ProjectB_TaskManager.Classes.Consoles
 
         private void MarkTaskAsCompleted()
         {
+            PrintSpecializedTable();
+
+            int id = MyConsoleReader.ReadInt32("Enter task id you want to remove --> ", 1, 99);
+
+            taskManager.MarkAsCompleted(id);
+
+            Console.WriteLine("No task whith this id was found.");
+        }
+
+        private void PrintSpecializedTable()
+        {
             string typeString = MyConsoleReader.ReadString("Enter task type [University/General] --> ");
 
             Type type = null;
@@ -243,20 +254,6 @@ namespace ProjectB_TaskManager.Classes.Consoles
             }
 
             PrintTasks(type);
-
-            int id = MyConsoleReader.ReadInt32("Enter task id you want to remove --> ", 1, 99);
-
-            for (int i = 0; i < taskManager.Count; i++)
-            {
-                if (taskManager[i].GetType() == type && taskManager[i].Id == id)
-                {
-                    taskManager[i].MarkAsCompleted();
-                    Console.WriteLine("Task has been successfully marked.");
-                    return;
-                }
-            }
-
-            Console.WriteLine("No task whith this id was found.");
         }
 
         private void PrintPossibleTaskStatus()
